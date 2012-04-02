@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+    <package version="8" platform-min="5" url="Archive.zip"/> <!-- TODO: change to normal name -->
+    <permissions>
+        <request domain="mywot.com" level="private"/>
+        <navigate domain="mywot.com" />
+
+        <!-- wait until official confirmation about granting permission to use * here
+        <page-info domain="*"/>
+        -->
+
+        <!-- temporary set of sites to visit -->
+        <page-info domain="google.fi"/>
+        <page-info domain="yandex.ru"/>
+        <page-info domain="claria.com"/>
+        <page-info domain="er.ru"/>
+        <page-info domain="tagzme.com"/>
+        <page-info domain="pascm.net"/>
+        <page-info domain="mail.ru"/>
+        <page-info domain="rambler.ru"/>
+        <page-info domain="президент.рф"/>
+
+    </permissions>
+</manifest>

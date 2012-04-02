@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<functions xmlns:f="http://bar.yandex.ru/dev/functional">
+
+    <f:variable name="icon-path-base" scope="widget" default="/assets/icons/16_16/plain/" />
+
+    <f:data name="hostname" __debug="">
+        <f:xpath __debug="">
+            <f:param name="expression" value="string(@host)"/>
+            <f:param name="source">
+                <f:parse-uri>
+                    <f:param name="uri">
+                        <f:page-location />
+                    </f:param>
+                </f:parse-uri>
+            </f:param>
+        </f:xpath>
+    </f:data>
+
+    <f:data name="get-reputation">
+        <r>5</r>
+        <c>2</c>
+    </f:data>
+
+    <f:data name="is-local">
+        <f:or>
+            <f:equal left="localhost" right="$hostname"/>
+            <f:equal left="127.0.0.1" right="$hostname"/>
+        </f:or>
+    </f:data>
+
+    <f:data name="get-icon">
+        assets/icons/16_16/plain/r3.png
+        <!--<f:concat>-->
+            <!--<f:param>-->
+                <!--<f:value-of name="icon-path-base"/>-->
+            <!--</f:param>-->
+            <!--<f:param>-->
+                <!--<f:value-of type="string" value="r5.png"/>-->
+            <!--</f:param>-->
+        <!--</f:concat>-->
+    </f:data>
+
+</functions>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget name="Web of Trust" icon="assets/icons/16_16/plain/default.png" xmlns="http://bar.yandex.ru/dev/gui" xmlns:f="http://bar.yandex.ru/dev/functional">
+    <f:include file="funcs.xml"/>
+    <button>
+        <icon>
+            <f:value-of name="get-icon"/>
+        </icon>
+        <text>
+            <f:value-of name="hostname"/>
+        </text>
+        <tooltip>WOT shows reputation of sites you visit</tooltip>
+    </button>
+</widget>
