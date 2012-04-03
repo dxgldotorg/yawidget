@@ -13,5 +13,8 @@
             <!--</f:concat>-->
         <!--</text>-->
         <tooltip>WOT shows reputation of sites you visit</tooltip>
+        <url>
+            <f:value-of name="scorecard-url"/>
+        </url>
     </button>
 </widget>

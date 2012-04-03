@@ -2,8 +2,13 @@
 <functions xmlns:f="http://bar.yandex.ru/dev/functional">
 
     <f:data name="icon-path-base">
-        <f:value>assets/icons/16_16/plain/</f:value>
+        <f:value type="string">assets/icons/16_16/plain/</f:value>
     </f:data>
+
+    <f:data name="scorecard-path-base">
+        <f:value type="string">http://www.mywot.com/scorecard/</f:value>
+    </f:data>
+
 
     <f:data name="api-url">
         <f:value value="http://api.mywot.com/0.4/public_query2?"/>
@@ -21,6 +26,13 @@
                 </f:parse-uri>
             </f:param>
         </f:xpath>
+    </f:data>
+
+    <f:data name="scorecard-url">
+        <f:concat>
+            <f:value-of name="scorecard-path-base"/>
+            <f:value-of name="hostname"/>
+        </f:concat>
     </f:data>
 
     <!-- response-like Stub for error cases -->
@@ -116,7 +128,7 @@
             <f:param name="source">
                 <scale>
                     <item r="-100" v="-9"/><!-- "error/default" status -->
-                    <item r="-3" v="-2"/><!-- "excluded" status -->
+                    <item r="-3" v="-2"/><!-- "excluded" status, not used -->
                     <item r="-2" v="0"/><!-- "unknown" status -->
                     <item r="0" v="1" />
                     <item r="20" v="2"/>
