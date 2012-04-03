@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget name="Web of Trust" icon="assets/icons/16_16/plain/default.png" xmlns="http://bar.yandex.ru/dev/gui" xmlns:f="http://bar.yandex.ru/dev/functional">
+<widget name="Web of Trust" icon="assets/icons/16_16/plain/r4.png" xmlns="http://bar.yandex.ru/dev/gui" xmlns:f="http://bar.yandex.ru/dev/functional">
     <f:include file="funcs.xml"/>
     <button>
+
         <icon>
             <f:value-of name="get-icon"/>
         </icon>
+
+        <tooltip>WOT shows reputation of sites you visit</tooltip>
+
+        <url>
+            <f:value-of name="scorecard-url"/>
+        </url>
+
         <!--<text>-->
             <!--<f:concat>-->
                 <!--<f:value-of name="hostname"/>-->
@@ -12,9 +20,6 @@
                 <!--<f:value-of name="scale-reputation"/>-->
             <!--</f:concat>-->
         <!--</text>-->
-        <tooltip>WOT shows reputation of sites you visit</tooltip>
-        <url>
-            <f:value-of name="scorecard-url"/>
-        </url>
+
     </button>
 </widget>

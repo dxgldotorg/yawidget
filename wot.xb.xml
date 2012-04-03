@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<preset version="2">
+<preset version="3">
     <name lang="ru">Web Of Trust</name>
     <name lang="en">Web Of Trust</name>
 
     <author>Web Of Trust Services</author>
 
     <!-- icon for installation and settings windows -->
-    <!-- TODO: Replace to production URL -->
-    <icon>http://localhost/~sergey/yabar/assets/icons/32.png</icon>
+    <icon>http://www.mywot.com/sites/all/images/fusion/32_32/new_trusted.png</icon>
 
     <!-- widgets in the set -->
     <widget id="http://localhost/~sergey/yabar/wot.manifest.xml#wot">
