@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest>
-    <package version="8" platform-min="5" url="Archive.zip"/> <!-- TODO: change to normal name -->
+    <package version="32" platform-min="5" url="Archive.zip"/> <!-- TODO: change to normal name -->
     <permissions>
         <request domain="mywot.com" level="private"/>
         <navigate domain="mywot.com" />
@@ -19,6 +19,7 @@
         <page-info domain="mail.ru"/>
         <page-info domain="rambler.ru"/>
         <page-info domain="президент.рф"/>
+        <page-info domain="akaterino.ru"/>
 
     </permissions>
 </manifest>

@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <functions xmlns:f="http://bar.yandex.ru/dev/functional">
 
-    <f:variable name="icon-path-base" scope="widget" default="/assets/icons/16_16/plain/" />
+    <f:data name="icon-path-base">
+        <f:value>assets/icons/16_16/plain/</f:value>
+    </f:data>
 
-    <f:data name="hostname" __debug="">
-        <f:xpath __debug="">
-            <f:param name="expression" value="string(@host)"/>
+    <f:data name="api-url">
+        <f:value value="http://api.mywot.com/0.4/public_query2?"/>
+    </f:data>
+
+    <!-- Get hostname from the URL opened in a current Tab -->
+    <f:data name="hostname">
+        <f:xpath>
+            <f:value>string(//@host[1])</f:value>
             <f:param name="source">
                 <f:parse-uri>
                     <f:param name="uri">
@@ -16,11 +23,124 @@
         </f:xpath>
     </f:data>
 
-    <f:data name="get-reputation">
-        <r>5</r>
-        <c>2</c>
+    <!-- response-like Stub for error cases -->
+    <f:data name="get-default">
+        <query target="">
+            <application name="0" r="-99" error="1"/>
+        </query>
     </f:data>
 
+    <!-- fetch data from WOT -->
+    <f:data name="fetch-reputation">
+        <f:if>
+            <f:param name="condition">
+                <f:is-empty>
+                    <f:value-of name="hostname"/>
+                </f:is-empty>
+            </f:param>
+            <f:param name="onfalse">
+                <f:content>
+                    <f:request>
+                        <f:param name="url">
+                            <f:concat>
+                                <f:value-of name="api-url"/>
+                                <f:value value="target="/>
+                                <f:value-of name="hostname"/>
+                            </f:concat>
+                        </f:param>
+                        <f:param name="expire">
+                            <!-- cache 60 minutes -->
+                            <f:value type="number">3600</f:value>
+                        </f:param>
+                        <f:param name="update">
+                            <!-- update 30 minutes (to avoid cache invalidation) -->
+                            <f:value type="number">1800</f:value>
+                        </f:param>
+                    </f:request>
+                </f:content>
+            </f:param>
+        </f:if>
+    </f:data>
+
+    <!-- Get reputation data for current hostname from WOT -->
+    <f:data name="get-reputation">
+
+        <!-- Check if Hostname isn't empty -->
+        <f:if>
+            <f:param name="condition">
+                <f:is-empty>
+                    <f:value-of name="hostname"/>
+                </f:is-empty>
+            </f:param>
+
+            <f:param name="ontrue">
+                <f:value-of name="get-default"/>
+            </f:param>
+
+            <!-- Try to get reputation data from server -->
+            <f:param name="onfalse">
+                <f:if>
+                    <f:param name="condition">
+                        <f:is-empty>
+                            <f:try>
+                                <f:param name="expression">
+                                    <f:xpath expression="number(//application/@r)" source="$fetch-reputation"/>
+                                </f:param>
+                                <f:param name="...">
+                                    <f:value type="number" value="-1"/>
+                                </f:param>
+                            </f:try>
+                        </f:is-empty>
+                    </f:param>
+
+                    <!-- if failed, use "default" stub -->
+                    <f:param name="ontrue">
+                        <f:value-of name="get-default"/>
+                    </f:param>
+
+                    <f:param name="onfalse">
+                        <f:value-of name="fetch-reputation"/>
+                    </f:param>
+
+                </f:if>
+            </f:param>
+
+        </f:if>
+
+    </f:data>
+
+    <!-- Rescale reputation value to [0, 5] value -->
+    <f:data name="scale-reputation">
+        <f:xpath>
+            <f:param>number(//item[@r &lt; <f:value-of name="current-reputation"/> ][last()]/@v)</f:param>
+            <f:param name="source">
+                <scale>
+                    <item r="-100" v="-9"/><!-- "error/default" status -->
+                    <item r="-3" v="-2"/><!-- "excluded" status -->
+                    <item r="-2" v="0"/><!-- "unknown" status -->
+                    <item r="0" v="1" />
+                    <item r="20" v="2"/>
+                    <item r="40" v="3"/>
+                    <item r="60" v="4"/>
+                    <item r="80" v="5"/>
+                </scale>
+            </f:param>
+        </f:xpath>
+    </f:data>
+
+    <!-- Extract reputation value from rep. dataset -->
+    <f:data name="current-reputation">
+        <f:try>
+            <f:param name="expression">
+                <f:xpath expression="number(//application/@r)" source="$get-reputation"/>
+            </f:param>
+            <f:param name="...">
+                <f:value type="number" value="-1"/>
+            </f:param>
+        </f:try>
+    </f:data>
+
+    <!-- Check if hostname is a kind of Local (we don't need to check local's reputation) -->
     <f:data name="is-local">
         <f:or>
             <f:equal left="localhost" right="$hostname"/>
@@ -28,16 +148,32 @@
         </f:or>
     </f:data>
 
+    <!-- Selects proper icon's file name according to reputation value and status -->
+    <f:data name="reputation-state">
+        <f:xpath>
+            <f:param>string(//item[@v = <f:value-of name="scale-reputation"/> ][last()]/@icon)</f:param>
+            <f:param name="source">
+                <icons>
+                    <item v="-9" icon="default"/><!-- "error/no data" status -->
+                    <item v="-2" icon="rx"/><!-- "excluded" status -->
+                    <item v="0" icon="r0"/><!-- "unknown" status -->
+                    <item v="1" icon="r1"/>
+                    <item v="2" icon="r2"/>
+                    <item v="3" icon="r3"/>
+                    <item v="4" icon="r4"/>
+                    <item v="5" icon="r5"/>
+                </icons>
+            </f:param>
+        </f:xpath>
+    </f:data>
+
+    <!-- Form path to Icon according to current site's reputation -->
     <f:data name="get-icon">
-        assets/icons/16_16/plain/r3.png
-        <!--<f:concat>-->
-            <!--<f:param>-->
-                <!--<f:value-of name="icon-path-base"/>-->
-            <!--</f:param>-->
-            <!--<f:param>-->
-                <!--<f:value-of type="string" value="r5.png"/>-->
-            <!--</f:param>-->
-        <!--</f:concat>-->
+        <f:concat>
+            <f:value-of name="icon-path-base"/>
+            <f:value-of name="reputation-state"/>
+            <f:value type="string" value=".png" />
+        </f:concat>
     </f:data>
 
 </functions>

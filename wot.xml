@@ -5,9 +5,13 @@
         <icon>
             <f:value-of name="get-icon"/>
         </icon>
-        <text>
-            <f:value-of name="hostname"/>
-        </text>
+        <!--<text>-->
+            <!--<f:concat>-->
+                <!--<f:value-of name="hostname"/>-->
+                <!--<f:value type="string"> / </f:value>-->
+                <!--<f:value-of name="scale-reputation"/>-->
+            <!--</f:concat>-->
+        <!--</text>-->
         <tooltip>WOT shows reputation of sites you visit</tooltip>
     </button>
 </widget>
