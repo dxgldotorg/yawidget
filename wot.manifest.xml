@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest>
-    <package version="39" platform-min="5" url="Archive.zip"/> <!-- TODO: change to normal name -->
+    <package version="40" platform-min="5" url="wot.zip"/> <!-- TODO: change to normal name -->
     <permissions>
         <request domain="mywot.com" level="private"/>
         <navigate domain="mywot.com" />
