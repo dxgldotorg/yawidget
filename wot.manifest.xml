@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest>
-    <package version="41" platform-min="5" url="wot.zip"/>
+    <package version="1" platform-min="5" url="wot.zip"/>
     <permissions>
         <request domain="mywot.com" level="private"/>
         <navigate domain="mywot.com" />
@@ -11,6 +11,7 @@
 
         <!-- temporary set of sites to visit -->
         <page-info domain="google.fi"/>
+        <page-info domain="google.com"/>
         <page-info domain="yandex.ru"/>
         <page-info domain="claria.com"/>
         <page-info domain="er.ru"/>
@@ -21,6 +22,7 @@
         <page-info domain="президент.рф"/>
         <page-info domain="akaterino.ru"/>
         <page-info domain="naturheilzentrum-alstertal.de"/>
+        <page-info domain="mywot.com"/>
 
     </permissions>
 </manifest>

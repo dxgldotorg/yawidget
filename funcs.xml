@@ -32,6 +32,7 @@
         <f:concat>
             <f:value-of name="scorecard-path-base"/>
             <f:value-of name="hostname"/>
+            <f:value type="string" value="?source=yawidget"/>
         </f:concat>
     </f:data>
 

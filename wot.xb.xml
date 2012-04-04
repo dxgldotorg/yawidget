@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<preset version="3">
+<preset version="1">
     <name lang="ru">Web Of Trust</name>
     <name lang="en">Web Of Trust</name>
 
     <author>Web Of Trust Services</author>
 
-    <!-- icon for installation and settings windows -->
+    <!-- Icon for installation and settings windows -->
     <icon>http://www.mywot.com/sites/all/images/fusion/32_32/new_trusted.png</icon>
 
-    <!-- widgets in the set -->
-    <widget id="http://localhost/~sergey/yabar/wot.manifest.xml#wot">
-        <!--
-        <setting name="setting1">setting value</setting>
-        -->
-    </widget>
+    <widget id="http://localhost/~sergey/yabar/wot.manifest.xml#wot"/>
+
 </preset>

@@ -1,25 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <widget name="Web of Trust" icon="assets/icons/16_16/plain/r4.png" xmlns="http://bar.yandex.ru/dev/gui" xmlns:f="http://bar.yandex.ru/dev/functional">
-    <f:include file="funcs.xml"/>
-    <button>
 
+    <f:include file="funcs.xml"/>
+
+    <button>
         <icon>
             <f:value-of name="get-icon"/>
         </icon>
 
-        <tooltip>WOT shows reputation of sites you visit</tooltip>
+        <tooltip>
+            <grid>
+                <row padding-top="4" padding-bottom="4">
+                    <cell h-align="center">репутация сайта</cell>
+                    <cell merge-left="true"/>
+                </row>
+                <row>
+                    <cell h-align="center" max-width="145" border-bottom-width="1" border-style="1" border-color="#a0a0a0">
+                        <style font-weight="bold" color="#101010">
+                            <f:value-of name="hostname"/>
+                        </style>
+                    </cell>
+                    <cell merge-left="true"/>
+                </row>
+                <f:xslt stylesheet="tooltip.xsl">
+                    <f:param name="source">
+                        <f:value-of name="get-reputation"/>
+                    </f:param>
+                </f:xslt>
+            </grid>
+        </tooltip>
 
-        <url>
-            <f:value-of name="scorecard-url"/>
-        </url>
-
-        <!--<text>-->
-            <!--<f:concat>-->
-                <!--<f:value-of name="hostname"/>-->
-                <!--<f:value type="string"> / </f:value>-->
-                <!--<f:value-of name="scale-reputation"/>-->
-            <!--</f:concat>-->
-        <!--</text>-->
+        <menu>
+            <menuitem>
+                <text>Показать отзывы о сайте</text>
+                <url><f:value-of name="scorecard-url"/></url>
+            </menuitem>
+            <separator/>
+            <menuitem>
+                <text>Скачать полную версию WOT</text>
+                <url>http://www.mywot.com/download?source=yawidget</url>
+            </menuitem>
+        </menu>
 
     </button>
 </widget>
