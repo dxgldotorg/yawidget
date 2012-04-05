@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://bar.yandex.ru/dev/gui" xmlns:my="http://mywot.com">
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
     <xsl:strip-space elements="*"/>
 
@@ -15,8 +15,7 @@
     <!--</xsl:template>-->
 
     <xsl:template match="query">
-        <my:rows>
-            <text>OOLOLO</text>
+        <rows>
             <xsl:if test="count(./application[not(@error)]) = 0">
                 <row>
                     <cell h-align="center" padding-top="5">
@@ -26,7 +25,7 @@
             </xsl:if>
             <!-- process only apps without 'error' flag set -->
             <xsl:apply-templates select="./application[not(@error)]"/>
-        </my:rows>
+        </rows>
     </xsl:template>
     <!-- For each application produce grid rows for title and ratings values -->
     <xsl:template match="application">
@@ -36,9 +35,9 @@
 
     <!-- Title of application -->
     <xsl:template match="application" mode="title">
-        <row padding-top="3" padding-bottom="2">
-            <cell>
-                <text>
+        <row padding-top="3" padding-bottom="2" xmlns="http://bar.yandex.ru/dev/gui">
+            <cell xmlns="http://bar.yandex.ru/dev/gui">
+                <text xmlns="http://bar.yandex.ru/dev/gui">
                     <xsl:choose>
                         <xsl:when test="@name=0">
                             <!-- Trustworthiness -->
@@ -59,21 +58,21 @@
                     </xsl:choose>
                 </text>
             </cell>
-            <cell merge-left="true"/>
+            <cell merge-left="true" xmlns="http://bar.yandex.ru/dev/gui"/>
         </row>
     </xsl:template>
 
     <xsl:template match="application" mode="ratings">
-        <row>
-            <cell width="24" max-width="24">
-                <icon>
+        <row xmlns="http://bar.yandex.ru/dev/gui">
+            <cell width="24" max-width="24" xmlns="http://bar.yandex.ru/dev/gui">
+                <icon xmlns="http://bar.yandex.ru/dev/gui">
                     <xsl:call-template name="reputation-icon">
                         <xsl:with-param name="reputation" select="@r"/>
                     </xsl:call-template>
                 </icon>
             </cell>
-            <cell>
-                <icon>
+            <cell xmlns="http://bar.yandex.ru/dev/gui">
+                <icon xmlns="http://bar.yandex.ru/dev/gui">
                     <xsl:call-template name="confidence-icon">
                         <xsl:with-param name="conf-level" select="@c"/>
                     </xsl:call-template>
