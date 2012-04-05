@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<functions xmlns:f="http://bar.yandex.ru/dev/functional">
+<functions xmlns:f="http://bar.yandex.ru/dev/functional" xmlns="http://www.w3.org/XML/1998/namespace">
 
     <f:data name="icon-path-base">
         <f:value type="string">assets/icons/16_16/plain/</f:value>
@@ -8,7 +8,6 @@
     <f:data name="scorecard-path-base">
         <f:value type="string">http://www.mywot.com/scorecard/</f:value>
     </f:data>
-
 
     <f:data name="api-url">
         <f:value value="http://api.mywot.com/0.4/public_query2?"/>
@@ -38,9 +37,7 @@
 
     <!-- response-like Stub for error cases -->
     <f:data name="get-default">
-        <query target="">
-            <application name="0" r="-99" error="1"/>
-        </query>
+        <f:file type="xml" path="default-response.xml"/>
     </f:data>
 
     <!-- fetch data from WOT -->
@@ -122,25 +119,6 @@
 
     </f:data>
 
-    <!-- Rescale reputation value to [0, 5] value -->
-    <f:data name="scale-reputation">
-        <f:xpath>
-            <f:param>number(//item[@r &lt; <f:value-of name="current-reputation"/> ][last()]/@v)</f:param>
-            <f:param name="source">
-                <scale>
-                    <item r="-100" v="-9"/><!-- "error/default" status -->
-                    <item r="-3" v="-2"/><!-- "excluded" status, not used -->
-                    <item r="-2" v="0"/><!-- "unknown" status -->
-                    <item r="0" v="1" />
-                    <item r="20" v="2"/>
-                    <item r="40" v="3"/>
-                    <item r="60" v="4"/>
-                    <item r="80" v="5"/>
-                </scale>
-            </f:param>
-        </f:xpath>
-    </f:data>
-
     <!-- Extract reputation value from rep. dataset -->
     <f:data name="current-reputation">
         <f:try>
@@ -152,6 +130,17 @@
             </f:param>
         </f:try>
     </f:data>
+
+    <!-- Rescale reputation value to [0, 5] value -->
+    <f:data name="scale-reputation">
+        <f:xpath>
+            <f:param>number(//item[@r &lt; <f:value-of name="current-reputation"/> ][last()]/@v)</f:param>
+            <f:param name="source">
+                <f:file type="xml" path="scale.xml"/>
+            </f:param>
+        </f:xpath>
+    </f:data>
+
 
     <!-- Check if hostname is a kind of Local (we don't need to check local's reputation) -->
     <f:data name="is-local">
@@ -166,16 +155,7 @@
         <f:xpath>
             <f:param>string(//item[@v = <f:value-of name="scale-reputation"/> ][last()]/@icon)</f:param>
             <f:param name="source">
-                <icons>
-                    <item v="-9" icon="default"/><!-- "error/no data" status -->
-                    <item v="-2" icon="rx"/><!-- "excluded" status -->
-                    <item v="0" icon="r0"/><!-- "unknown" status -->
-                    <item v="1" icon="r1"/>
-                    <item v="2" icon="r2"/>
-                    <item v="3" icon="r3"/>
-                    <item v="4" icon="r4"/>
-                    <item v="5" icon="r5"/>
-                </icons>
+                <f:file type="xml" path="icons.xml"/>
             </f:param>
         </f:xpath>
     </f:data>

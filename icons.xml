@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<icons>
+    <item v="-9" icon="default"/><!-- "error/no data" status -->
+    <item v="-2" icon="rx"/><!-- "excluded" status -->
+    <item v="0" icon="r0"/><!-- "unknown" status -->
+    <item v="1" icon="r1"/>
+    <item v="2" icon="r2"/>
+    <item v="3" icon="r3"/>
+    <item v="4" icon="r4"/>
+    <item v="5" icon="r5"/>
+</icons>

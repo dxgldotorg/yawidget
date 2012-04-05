@@ -1,23 +1,32 @@
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://bar.yandex.ru/dev/gui">
+<?xml version="1.0" encoding="utf-8"?>
+<xsl:stylesheet version="1.0"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://bar.yandex.ru/dev/gui" xmlns:my="http://mywot.com">
+
+    <xsl:strip-space elements="*"/>
+
+    <xsl:output encoding="UTF-8" method="xml"/>
 
     <xsl:variable name="icon-path-base-16" select="'assets/icons/16_16/plain/'"/>
     <xsl:variable name="icon-path-base-19" select="'assets/icons/19_19/'"/>
 
     <!-- process <application> tags from API's response -->
-    <xsl:template match="/">
-        <xsl:apply-templates select="/query"/>
-    </xsl:template>
+    <!--<xsl:template match="/">-->
+            <!--<xsl:apply-templates select="//query"/>-->
+    <!--</xsl:template>-->
 
     <xsl:template match="query">
-        <xsl:if test="count(./application[not(@error)]) = 0">
-            <row>
-                <cell h-align="center" padding-top="5">
-                    <text>Нет данных</text>
-                </cell>
-            </row>
-        </xsl:if>
-        <!-- process only apps without 'error' flag set -->
-        <xsl:apply-templates select="./application[not(@error)]"/>
+        <my:rows>
+            <text>OOLOLO</text>
+            <xsl:if test="count(./application[not(@error)]) = 0">
+                <row>
+                    <cell h-align="center" padding-top="5">
+                        <text>Нет данных</text>
+                    </cell>
+                </row>
+            </xsl:if>
+            <!-- process only apps without 'error' flag set -->
+            <xsl:apply-templates select="./application[not(@error)]"/>
+        </my:rows>
     </xsl:template>
     <!-- For each application produce grid rows for title and ratings values -->
     <xsl:template match="application">
@@ -69,8 +78,6 @@
                         <xsl:with-param name="conf-level" select="@c"/>
                     </xsl:call-template>
                 </icon>
-                <!--<xsl:text>C = </xsl:text>-->
-                <!--<xsl:value-of select="@c"/>-->
             </cell>
         </row>
     </xsl:template>

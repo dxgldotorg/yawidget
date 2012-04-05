@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scale>
+    <item r="-100" v="-9"/><!-- "error/default" status -->
+    <item r="-3" v="-2"/><!-- "excluded" status, not used -->
+    <item r="-2" v="0"/><!-- "unknown" status -->
+    <item r="0" v="1" />
+    <item r="20" v="2"/>
+    <item r="40" v="3"/>
+    <item r="60" v="4"/>
+    <item r="80" v="5"/>
+</scale>

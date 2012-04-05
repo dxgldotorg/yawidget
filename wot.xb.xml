@@ -8,6 +8,6 @@
     <!-- Icon for installation and settings windows -->
     <icon>http://www.mywot.com/sites/all/images/fusion/32_32/new_trusted.png</icon>
 
-    <widget id="http://localhost/~sergey/yabar/wot.manifest.xml#wot"/>
+    <widget id="http://people.mywot.com/sergey/experiments/yawidget/wot.manifest.xml#wot"/>
 
 </preset>
