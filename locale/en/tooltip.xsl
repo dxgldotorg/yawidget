@@ -19,7 +19,7 @@
             <xsl:if test="count(./application[not(@error)]) = 0">
                 <row>
                     <cell h-align="center" padding-top="5">
-                        <text>Нет данных</text>
+                        <text>no data</text>
                     </cell>
                 </row>
             </xsl:if>
@@ -27,6 +27,7 @@
             <xsl:apply-templates select="./application[not(@error)]"/>
         </rows>
     </xsl:template>
+
     <!-- For each application produce grid rows for title and ratings values -->
     <xsl:template match="application">
         <xsl:apply-templates select="." mode="title"/>
@@ -41,19 +42,19 @@
                     <xsl:choose>
                         <xsl:when test="@name=0">
                             <!-- Trustworthiness -->
-                            <xsl:text>Заслуживает доверие</xsl:text>
+                            <xsl:text>Trustworthiness</xsl:text>
                         </xsl:when>
                         <xsl:when test="@name=1">
                             <!-- Vendor reliability -->
-                            <xsl:text>Надежность продавца</xsl:text>
+                            <xsl:text>Vendor reliability</xsl:text>
                         </xsl:when>
                         <xsl:when test="@name=2">
                             <!-- Privacy -->
-                            <xsl:text>Конфиденциальность</xsl:text>
+                            <xsl:text>Privacy</xsl:text>
                         </xsl:when>
                         <xsl:when test="@name=4">
                             <!-- Child Safety -->
-                            <xsl:text>Безопасность для детей</xsl:text>
+                            <xsl:text>Child Safety</xsl:text>
                         </xsl:when>
                     </xsl:choose>
                 </text>

@@ -1,0 +1,4 @@
+<!ENTITY wot.widget.name "Web Of Trust - know which sites to trust">
+<!ENTITY wot.tooltip.title "reputation of the site">
+<!ENTITY wot.menu.showscorecard "Show site's scorecard">
+<!ENTITY wot.menu.download "Download full version of WOT">

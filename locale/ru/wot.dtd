@@ -1,0 +1,4 @@
+<!ENTITY wot.widget.name "Web Of Trust - индикатор репутации сайтов">
+<!ENTITY wot.tooltip.title "репутация сайта">
+<!ENTITY wot.menu.showscorecard "Показать отзывы о сайте">
+<!ENTITY wot.menu.download "Скачать полную версию WOT">
