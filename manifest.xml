@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest>
-    <package version="23" platform-min="5" url="http://people.mywot.com/sergey/experiments/yawidget/wot.zip"/>
+    <package version="1" platform-min="5" url="http://people.mywot.com/sergey/experiments/yawidget/wot.zip"/>
     <permissions>
         <request domain="mywot.com" level="private"/>
         <navigate domain="mywot.com" />
