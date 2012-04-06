@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE widget SYSTEM "wot.dtd">
-<widget name="&wot.widget.name;" icon="assets/icons/16_16/plain/r4.png" unique="true"
+<widget name="&wot.widget.name;" icon="assets/icons/16_16/plain/r4.png"
         xmlns="http://bar.yandex.ru/dev/gui"
         xmlns:f="http://bar.yandex.ru/dev/functional">
 
@@ -172,16 +172,6 @@
         </f:concat>
     </f:data>
 
-    <f:data name="make-tooltip">
-        <f:xpath>
-            <f:value type="string">/*</f:value>
-            <f:xslt>
-                <f:value type="string">tooltip.xsl</f:value>
-                <f:value-of name="get-reputation"/>
-            </f:xslt>
-        </f:xpath>
-    </f:data>
-
     <button>
         <icon>
             <f:value-of name="get-icon"/>
@@ -194,26 +184,20 @@
                     <cell merge-left="true"/>
                 </row>
                 <row>
-                    <cell>
-                    <!--<cell h-align="center" max-width="145" border-bottom-width="1" border-style="1" border-color="#a0a0a0">-->
+                    <cell h-align="center" max-width="145" border-bottom-width="1" border-style="1" border-color="#a0a0a0">
                         <style font-weight="bold" color="#101010">
                             <f:value-of name="hostname"/>
                         </style>
                     </cell>
                     <cell merge-left="true"/>
                 </row>
-                <row>
-                    <cell>
-                        <f:value-of name="make-tooltip"/>
-                    </cell>
-                </row>
-                <row>
-                    <cell>
-                        <f:serialize-xml>
-                            <f:value-of name="make-tooltip"/>
-                        </f:serialize-xml>
-                    </cell>
-                </row>
+                <f:xpath>
+                    <f:value type="string">rows/*</f:value>
+                    <f:xslt>
+                        <f:value type="string">tooltip.xsl</f:value>
+                        <f:value-of name="get-reputation"/>
+                    </f:xslt>
+                </f:xpath>
             </grid>
         </tooltip>
 
@@ -225,7 +209,7 @@
             <separator/>
             <menuitem>
                 <text>&wot.menu.download;</text>
-                <url>http://www.mywot.com/download?source=yawidget</url>
+                <url>http://www.mywot.com/download.php?src=yawidget&amp;dw=1</url>
             </menuitem>
         </menu>
 

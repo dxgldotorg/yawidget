@@ -2,3 +2,8 @@
 <!ENTITY wot.tooltip.title "репутация сайта">
 <!ENTITY wot.menu.showscorecard "Показать отзывы о сайте">
 <!ENTITY wot.menu.download "Скачать полную версию WOT">
+<!ENTITY wot.tooltip.trustworthiness "Заслуживает доверие">
+<!ENTITY wot.tooltip.vendorreliability "Надежность продавца">
+<!ENTITY wot.tooltip.privacy "Конфиденциальность">
+<!ENTITY wot.tooltip.childsafety "Безопасность для детей">
+<!ENTITY wot.tooltip.nodata "Нет данных">
