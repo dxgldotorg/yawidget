@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Map of icons for every reputation level -->
 <icons>
     <item v="-9" icon="default"/><!-- "error/no data" status -->
     <item v="-2" icon="rx"/><!-- "excluded" status -->

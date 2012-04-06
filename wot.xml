@@ -209,7 +209,7 @@
             <separator/>
             <menuitem>
                 <text>&wot.menu.download;</text>
-                <url>http://www.mywot.com/download?source=yawidget</url>
+                <url>http://www.mywot.com/download.php?src=yawidget&amp;dw=1</url>
             </menuitem>
         </menu>
 
