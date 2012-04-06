@@ -2,3 +2,8 @@
 <!ENTITY wot.tooltip.title "reputation of the site">
 <!ENTITY wot.menu.showscorecard "Show site's scorecard">
 <!ENTITY wot.menu.download "Download full version of WOT">
+<!ENTITY wot.tooltip.trustworthiness "Trustworthiness">
+<!ENTITY wot.tooltip.vendorreliability "Vendor reliability">
+<!ENTITY wot.tooltip.privacy "Privacy">
+<!ENTITY wot.tooltip.childsafety "Child safety">
+<!ENTITY wot.tooltip.nodata "No data">

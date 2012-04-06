@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsl:stylesheet version="1.0"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<!DOCTYPE stylesheet SYSTEM "wot.dtd">
+
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
     <xsl:strip-space elements="*"/>
 
@@ -9,17 +10,12 @@
     <xsl:variable name="icon-path-base-16" select="'assets/icons/16_16/plain/'"/>
     <xsl:variable name="icon-path-base-19" select="'assets/icons/19_19/'"/>
 
-    <!-- process <application> tags from API's response -->
-    <!--<xsl:template match="/">-->
-            <!--<xsl:apply-templates select="//query"/>-->
-    <!--</xsl:template>-->
-
     <xsl:template match="query">
         <rows>
             <xsl:if test="count(./application[not(@error)]) = 0">
                 <row>
                     <cell h-align="center" padding-top="5">
-                        <text>Нет данных</text>
+                        <text>&wot.tooltip.nodata;</text>
                     </cell>
                 </row>
             </xsl:if>
@@ -27,6 +23,7 @@
             <xsl:apply-templates select="./application[not(@error)]"/>
         </rows>
     </xsl:template>
+
     <!-- For each application produce grid rows for title and ratings values -->
     <xsl:template match="application">
         <xsl:apply-templates select="." mode="title"/>
@@ -41,19 +38,19 @@
                     <xsl:choose>
                         <xsl:when test="@name=0">
                             <!-- Trustworthiness -->
-                            <xsl:text>Заслуживает доверие</xsl:text>
+                            <xsl:text>&wot.tooltip.trustworthiness;</xsl:text>
                         </xsl:when>
                         <xsl:when test="@name=1">
                             <!-- Vendor reliability -->
-                            <xsl:text>Надежность продавца</xsl:text>
+                            <xsl:text>&wot.tooltip.vendorreliability;</xsl:text>
                         </xsl:when>
                         <xsl:when test="@name=2">
                             <!-- Privacy -->
-                            <xsl:text>Конфиденциальность</xsl:text>
+                            <xsl:text>&wot.tooltip.privacy;</xsl:text>
                         </xsl:when>
                         <xsl:when test="@name=4">
                             <!-- Child Safety -->
-                            <xsl:text>Безопасность для детей</xsl:text>
+                            <xsl:text>&wot.tooltip.childsafety;</xsl:text>
                         </xsl:when>
                     </xsl:choose>
                 </text>
@@ -64,7 +61,7 @@
 
     <xsl:template match="application" mode="ratings">
         <row xmlns="http://bar.yandex.ru/dev/gui">
-            <cell width="24" max-width="24" xmlns="http://bar.yandex.ru/dev/gui">
+            <cell width="30" max-width="30" h-align="center" xmlns="http://bar.yandex.ru/dev/gui">
                 <icon xmlns="http://bar.yandex.ru/dev/gui">
                     <xsl:call-template name="reputation-icon">
                         <xsl:with-param name="reputation" select="@r"/>
