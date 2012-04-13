@@ -13,8 +13,8 @@
     <xsl:template match="query">
         <rows>
             <xsl:if test="count(./application[not(@error)]) = 0">
-                <row>
-                    <cell h-align="center" padding-top="5">
+                <row xmlns="http://bar.yandex.ru/dev/gui">
+                    <cell h-align="center" padding-top="5" xmlns="http://bar.yandex.ru/dev/gui">
                         <text>&wot.tooltip.nodata;</text>
                     </cell>
                 </row>
@@ -31,7 +31,7 @@
 
     <!-- Title of application -->
     <xsl:template match="application" mode="title">
-        <row padding-top="3" padding-bottom="2">
+        <row padding-top="3" padding-bottom="2" xmlns="http://bar.yandex.ru/dev/gui">
             <cell>
                 <text>
                     <xsl:choose>
@@ -59,7 +59,7 @@
     </xsl:template>
 
     <xsl:template match="application" mode="ratings">
-        <row>
+        <row xmlns="http://bar.yandex.ru/dev/gui">
             <cell width="24" max-width="24">
                 <icon>
                     <xsl:call-template name="reputation-icon">
@@ -76,7 +76,7 @@
             </cell>
         </row>
     </xsl:template>
-    
+
     <xsl:template name="reputation-icon">
         <xsl:param name="reputation"/>
         <xsl:choose>
